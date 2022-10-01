@@ -6,24 +6,24 @@ namespace TracerLibrary
 {
     public struct TraceResult
     {
-        string methodName;
-        string className;
-        long runTime;
-
-        public TraceResult(string methodName, string className, long runTime)
+        public TraceResult(string methodName, string className, long elapsedTime) : this()
         {
-            this.methodName = methodName;
-            this.className = className;
-            this.runTime = runTime;
+            MethodName = methodName;
+            ClassName = className;
+            ElapsedTime = elapsedTime;
         }
+
+        string MethodName { get; }
+        string ClassName { get; }
+        public long ElapsedTime { get; }
     }
 
     public interface ITracer
     {
-        void StartTrace();​
+        void StartTrace();
     
-        void StopTrace();​
+        void StopTrace();
     
-        TraceResult GetTraceResult();
+        public TraceResult GetTraceResult();
     }
 }
