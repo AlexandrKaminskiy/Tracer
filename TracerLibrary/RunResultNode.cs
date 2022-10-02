@@ -6,12 +6,14 @@ namespace TracerLibrary
 {
     public class RunResultNode
     {
-        RunResultNode(RunResult thisMethod)
+        public RunResultNode()
         {
-            this.thisMethod = thisMethod;
+            ChildMethods = new List<RunResultNode>();
+            AddingToStackTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         }
-
-        RunResult thisMethod { get; }
-        List<RunResult> childMethods { get; }
+        public long AddingToStackTime { get; }
+        public RunResult ThisMethod { set; get; }
+        public RunResultNode ParentMethod { set; get; }
+        public List<RunResultNode> ChildMethods { get; }
     }
 }

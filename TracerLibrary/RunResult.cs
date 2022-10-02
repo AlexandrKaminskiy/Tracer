@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TracerLibrary
 {
-    struct RunResult
+    public struct RunResult
     {
         public RunResult(string methodName, string className, long elapsedTime)
         {

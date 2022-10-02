@@ -6,8 +6,8 @@ namespace TracerLibrary
 {
     public class ThreadTraceResult
     {
-        Stack<RunResultNode> methodsStack { get; set; }
-        RunResultNode invokedMethods { get; set; }
+        public Stack<RunResultNode> methodsStack { get; set; }
+        public RunResultNode invokedMethods { get; set; }
         public ThreadTraceResult()
         {
             methodsStack = new Stack<RunResultNode>();

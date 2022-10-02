@@ -4,7 +4,7 @@ using System.Text;
 using TracerLibrary;
 namespace ActivityWorkers
 {
-    class Filtering
+    public class Filtering
     {
         ITracer tracer;
         public Filtering(ITracer tracer)

@@ -10,8 +10,6 @@ namespace TracerLibrary
     {
 
         private TraceResult traceResult;
-        private long startTime;
-        private long endTime;
 
         public ITracerImpl()
         {
@@ -24,21 +22,43 @@ namespace TracerLibrary
         
         public void StartTrace()
         {
-            lock(this) {
+            lock(this) 
+            {
+                RunResultNode invokedMethod = new RunResultNode();
                 int threadId = Thread.CurrentThread.ManagedThreadId;
-                traceResult.resultDictionary.GetOrAdd(threadId, (threadId) => new ThreadTraceResult());
-                //startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                ThreadTraceResult ttr = traceResult.resultDictionary.GetOrAdd(threadId, (threadId) => new ThreadTraceResult());
+                ttr.methodsStack.Push(invokedMethod);
+
             }
         }
 
         public void StopTrace()
         {
-            endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            StackTrace stackTrace = new StackTrace();
-            var invoker = stackTrace.GetFrame(1).GetMethod();
-            string methodName = invoker.Name;
-            string className = invoker.DeclaringType.Name;
-            long elapsedTime = endTime - startTime;
+            lock (this)
+            {
+                long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                int threadId = Thread.CurrentThread.ManagedThreadId;
+                ThreadTraceResult ttr = traceResult.resultDictionary.GetOrAdd(threadId, (threadId) => new ThreadTraceResult());
+                RunResultNode endedMethod = ttr.methodsStack.Pop();
+                if (ttr.methodsStack.Count != 0)
+                {
+                    RunResultNode invoker = ttr.methodsStack.Peek();
+                    endedMethod.ParentMethod = invoker;
+                    invoker.ChildMethods.Add(endedMethod);
+                } 
+                else
+                {
+                    ttr.invokedMethods = endedMethod;
+                }
+                
+                StackTrace stackTrace = new StackTrace();
+                var method = stackTrace.GetFrame(1).GetMethod();
+                string methodName = method.Name;
+                string className = method.DeclaringType.Name;
+                long elapsedTime = endTime - endedMethod.AddingToStackTime;
+
+                endedMethod.ThisMethod = new RunResult(methodName, className, elapsedTime);
+            }
         }
 
     }
