@@ -4,8 +4,7 @@ using System.Diagnostics;
 using ActivityWorkers;
 using System.Collections.Concurrent;
 using System.Threading;
-using System.Xml.Serialization;
-using System.IO;
+
 
 namespace Tracer
 {
@@ -23,20 +22,8 @@ namespace Tracer
             t.Join();
             tracer.GetTraceResult();
             Console.WriteLine("123");
-            test();
-        }
-        static void test()
-        {
-            string s = "12312j3";
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(TraceResult));
 
-            // получаем поток, куда будем записывать сериализованный объект
-            using (FileStream fs = new FileStream("person.xml", FileMode.OpenOrCreate))
-            {
-                //xmlSerializer.Serialize(fs, result);
-
-                Console.WriteLine("Object has been serialized");
-            }
         }
+        
     }
 }

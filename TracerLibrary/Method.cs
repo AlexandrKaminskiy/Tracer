@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Xml.Serialization;
 namespace TracerLibrary
 {
-    internal class MethodDto
+    public class Method
     {
         public string Name { get; set; }
         public string Class { get; set; }
         public long Time { get; set; }
-        public List<MethodDto> methodDtos { get; set; }
+        
+        [XmlArray("methods")]
+        public List<Method> methods { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 using System.Threading;
+using TracerLibrary.Serialization;
 
 namespace TracerLibrary
 {
@@ -18,7 +19,12 @@ namespace TracerLibrary
         public TraceResult GetTraceResult()
         {
             TraceResultMapper traceResultMapper = new TraceResultMapper();
-            traceResultMapper.ToTraceResultDto(traceResult);
+            var trDto = traceResultMapper.ToTraceResultDto(traceResult);
+            TraceResultXmlSerializer traceResultXmlSerializer = new TraceResultXmlSerializer();
+            traceResultXmlSerializer.Serialize(trDto);
+
+            TraceResultJsonSerializer traceResultJsonSerializer = new TraceResultJsonSerializer();
+            traceResultJsonSerializer.Serialize(trDto);
             return traceResult;
         }
         

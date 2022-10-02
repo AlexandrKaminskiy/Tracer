@@ -7,39 +7,39 @@ namespace TracerLibrary
     internal class TraceResultMapper
     {
         long time;
-        internal List<TraceResultDto> ToTraceResultDto(TraceResult traceResult)
+        internal List<Threads> ToTraceResultDto(TraceResult traceResult)
         {
-            List<TraceResultDto> traceResultDtos = new List<TraceResultDto>();
+            List<Threads> traceResultDtos = new List<Threads>();
             var enumerator = traceResult.resultDictionary.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                TraceResultDto traceResultDto = new TraceResultDto();
+                Threads traceResultDto = new Threads();
                 time = 0;
                 int ti = enumerator.Current.Key;
                 RunResultNode runResultNode = enumerator.Current.Value.invokedMethods;
-                MethodDto methodDto = ToMethodDto(runResultNode);
-                traceResultDto.methodInfoDto = ToMethodDto(runResultNode);
-                traceResultDto.ThreadId = ti;
-                traceResultDto.Time = time;
+                Method methodDto = ToMethodDto(runResultNode);
+                traceResultDto.methods = ToMethodDto(runResultNode);
+                traceResultDto.id = ti;
+                traceResultDto.time = time;
                 traceResultDtos.Add(traceResultDto);
             }
             return traceResultDtos;
         }
-        MethodDto ToMethodDto(RunResultNode runResultNode)
+        Method ToMethodDto(RunResultNode runResultNode)
         {
-            List<MethodDto> childMethodDtos = new List<MethodDto>();
+            List<Method> childMethodDtos = new List<Method>();
             foreach (var method in runResultNode.ChildMethods)
             {
                 childMethodDtos.Add(ToMethodDto(method));
             }
-            MethodDto methodDto = ToMethodDto(runResultNode.ThisMethod);
-            methodDto.methodDtos = childMethodDtos;
+            Method methodDto = ToMethodDto(runResultNode.ThisMethod);
+            methodDto.methods = childMethodDtos;
             return methodDto;
         }
 
-        MethodDto ToMethodDto(RunResult runResult)
+        Method ToMethodDto(RunResult runResult)
         {
-            MethodDto methodDto = new MethodDto();
+            Method methodDto = new Method();
             methodDto.Name = runResult.MethodName;
             methodDto.Time = runResult.ElapsedTime;
             methodDto.Class = runResult.ClassName;

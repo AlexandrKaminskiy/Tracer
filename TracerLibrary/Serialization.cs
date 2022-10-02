@@ -6,9 +6,9 @@ namespace TracerLibrary
 {
     namespace Serialization
     {
-        interface Serialization
+        internal interface Serialization
         {
-            void Serialize(TraceResult traceResult);
+            void Serialize(List<Threads> traceResult);
         }
     }
     
