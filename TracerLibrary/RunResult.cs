@@ -6,7 +6,7 @@ namespace TracerLibrary
 {
     struct RunResult
     {
-        public RunResult(string methodName, string className, long elapsedTime) : this()
+        public RunResult(string methodName, string className, long elapsedTime)
         {
             MethodName = methodName;
             ClassName = className;

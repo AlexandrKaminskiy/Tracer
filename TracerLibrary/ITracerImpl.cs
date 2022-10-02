@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace TracerLibrary
 {
     public class ITracerImpl : ITracer
     {
-        private List<ITracer> ITracers { set; get; }
+
         private TraceResult traceResult;
         private long startTime;
         private long endTime;
 
         public ITracerImpl()
         {
-            ITracers = new List<ITracer>();
+            traceResult = new TraceResult();
         }
         public TraceResult GetTraceResult()
         {
             return traceResult;
         }
-
+        
         public void StartTrace()
         {
             lock(this) {
-                startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                int threadId = Thread.CurrentThread.ManagedThreadId;
+                traceResult.resultDictionary.GetOrAdd(threadId, (threadId) => new ThreadTraceResult());
+                //startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             }
         }
 

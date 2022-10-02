@@ -6,6 +6,12 @@ namespace TracerLibrary
 {
     public class TraceResult
     {
-        ConcurrentDictionary<string, ThreadTraceResult> traceResult { get; set; }
+        public ConcurrentDictionary<int, ThreadTraceResult> resultDictionary { get; set; }
+        public TraceResult()
+        {
+            resultDictionary = new ConcurrentDictionary<int, ThreadTraceResult>();
+        }
+        
+
     }
 }
