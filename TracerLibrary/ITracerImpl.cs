@@ -5,12 +5,17 @@ using System.Diagnostics;
 
 namespace TracerLibrary
 {
-    class ITracerImpl : ITracer
+    public class ITracerImpl : ITracer
     {
+        private List<ITracer> ITracers { set; get; }
         private TraceResult traceResult;
         private long startTime;
         private long endTime;
 
+        public ITracerImpl()
+        {
+            ITracers = new List<ITracer>();
+        }
         public TraceResult GetTraceResult()
         {
             return traceResult;
@@ -18,7 +23,9 @@ namespace TracerLibrary
 
         public void StartTrace()
         {
-            startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            lock(this) {
+                startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            }
         }
 
         public void StopTrace()
@@ -29,7 +36,7 @@ namespace TracerLibrary
             string methodName = invoker.Name;
             string className = invoker.DeclaringType.Name;
             long elapsedTime = endTime - startTime;
-            traceResult = new TraceResult(methodName, className, elapsedTime);
         }
+
     }
 }
