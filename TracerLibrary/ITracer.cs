@@ -10,6 +10,6 @@ namespace TracerLibrary
 
         void StopTrace();
 
-        TraceResult GetTraceResult();
+        public TraceResult GetTraceResult();
     }
 }

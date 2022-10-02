@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TracerLibrary
 {
-    public class RunResultNode
+    internal class RunResultNode
     {
         public RunResultNode()
         {

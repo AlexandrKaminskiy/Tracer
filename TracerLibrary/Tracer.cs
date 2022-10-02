@@ -6,17 +6,19 @@ using System.Threading;
 
 namespace TracerLibrary
 {
-    public class ITracerImpl : ITracer
+    public class Tracer : ITracer
     {
 
         private TraceResult traceResult;
 
-        public ITracerImpl()
+        public Tracer()
         {
             traceResult = new TraceResult();
         }
         public TraceResult GetTraceResult()
         {
+            TraceResultMapper traceResultMapper = new TraceResultMapper();
+            traceResultMapper.ToTraceResultDto(traceResult);
             return traceResult;
         }
         

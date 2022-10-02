@@ -10,7 +10,8 @@ namespace TracerLibrary
         {
             public void Serialize(TraceResult traceResult)
             {
-                
+
+            }
         }
     }
    

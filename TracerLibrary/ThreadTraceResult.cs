@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TracerLibrary
 {
-    public class ThreadTraceResult
+    internal class ThreadTraceResult
     {
         public Stack<RunResultNode> methodsStack { get; set; }
         public RunResultNode invokedMethods { get; set; }
