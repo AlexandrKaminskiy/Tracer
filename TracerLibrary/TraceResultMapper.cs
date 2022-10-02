@@ -33,7 +33,7 @@ namespace TracerLibrary
                 childMethodDtos.Add(ToMethodDto(method));
             }
             Method methodDto = ToMethodDto(runResultNode.ThisMethod);
-            methodDto.methods = childMethodDtos;
+            methodDto.methods = childMethodDtos.ToArray();
             return methodDto;
         }
 

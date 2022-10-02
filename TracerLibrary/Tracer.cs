@@ -11,20 +11,12 @@ namespace TracerLibrary
     {
 
         private TraceResult traceResult;
-
         public Tracer()
         {
             traceResult = new TraceResult();
         }
         public TraceResult GetTraceResult()
         {
-            TraceResultMapper traceResultMapper = new TraceResultMapper();
-            var trDto = traceResultMapper.ToTraceResultDto(traceResult);
-            TraceResultXmlSerializer traceResultXmlSerializer = new TraceResultXmlSerializer();
-            traceResultXmlSerializer.Serialize(trDto);
-
-            TraceResultJsonSerializer traceResultJsonSerializer = new TraceResultJsonSerializer();
-            traceResultJsonSerializer.Serialize(trDto);
             return traceResult;
         }
         

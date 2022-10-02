@@ -9,8 +9,7 @@ namespace TracerLibrary
         public string Name { get; set; }
         public string Class { get; set; }
         public long Time { get; set; }
-        
-        [XmlArray("methods")]
-        public List<Method> methods { get; set; }
+        public Method[] methods { get; set; }
+
     }
 }

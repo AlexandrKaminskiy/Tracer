@@ -8,20 +8,30 @@ namespace TracerLibrary
 {
     namespace Serialization
     {
-        internal class TraceResultXmlSerializer : Serialization
+        public class TraceResultXmlSerializer : Serialization, Writer
         {
+            private ITracer tracer;
+            public TraceResultXmlSerializer(ITracer tracer)
+            {
+                this.tracer = tracer;
+            }
             public void Serialize(List<Threads> traceResult)
             {
                 Threads[] traceResultDtos = traceResult.ToArray();
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Threads>));
 
-                // получаем поток, куда будем записывать сериализованный объект
-                using (FileStream fs = new FileStream("traceResult.xml", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream("traceResult.xml", FileMode.Create))
                 {
                     xmlSerializer.Serialize(fs, traceResult);
 
                     Console.WriteLine("Object has been serialized");
                 }
+            }
+            public void WriteResults()
+            {
+                TraceResultMapper traceResultMapper = new TraceResultMapper();
+                var trDto = traceResultMapper.ToTraceResultDto(tracer.GetTraceResult());
+                Serialize(trDto);
             }
         }
     }

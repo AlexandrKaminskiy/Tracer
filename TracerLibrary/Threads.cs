@@ -10,5 +10,6 @@ namespace TracerLibrary
         public int id { get; set; }
         public long time { get; set; }
         public Method methods { get; set; }
+
     }
 }
