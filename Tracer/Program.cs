@@ -5,6 +5,7 @@ using ActivityWorkers;
 using System.Collections.Concurrent;
 using System.Threading;
 using TracerLibrary.Serialization;
+using System.Collections.Generic;
 
 namespace Tracer
 {
@@ -12,6 +13,7 @@ namespace Tracer
     {
         static void Main(string[] args)
         {
+            
             ITracer tracer = new TracerLibrary.Tracer();
 
             Sorting sorting = new Sorting(tracer);

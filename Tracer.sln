@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracer", "Tracer\Tracer.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TracerLibrary", "TracerLibrary\TracerLibrary.csproj", "{B3436043-1443-46C4-8057-7A7B2B6DBAE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityWorkers", "ActivityWorkers\ActivityWorkers.csproj", "{78602B27-C0F3-4959-87A8-2523E8E261E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityWorkers", "ActivityWorkers\ActivityWorkers.csproj", "{78602B27-C0F3-4959-87A8-2523E8E261E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TracerTest", "TracerTest\TracerTest.csproj", "{3865D1DD-33D2-481A-857C-428492F6A09C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{78602B27-C0F3-4959-87A8-2523E8E261E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78602B27-C0F3-4959-87A8-2523E8E261E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78602B27-C0F3-4959-87A8-2523E8E261E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3865D1DD-33D2-481A-857C-428492F6A09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3865D1DD-33D2-481A-857C-428492F6A09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3865D1DD-33D2-481A-857C-428492F6A09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3865D1DD-33D2-481A-857C-428492F6A09C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
